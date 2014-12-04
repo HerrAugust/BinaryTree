@@ -68,14 +68,14 @@ public class Visualizzatore extends JPanel{
 		
 		
 		int xsx = (int) (coordPadre.getX() - Math.abs((coordNonno.getX() - coordPadre.getX()) / 2));
-		int ysx = (int) coordPadre.getY() + 40 + this.distanzaLivelli;
+		int ysx = (int) coordPadre.getY() + this.dimNodo + this.distanzaLivelli;
 		Point coordNodoSx = new Point(xsx, ysx);
 		int xdx = (int) ((coordPadre.getX() - coordNodoSx.getX()) + coordPadre.getX());
-		int ydx = (int) coordPadre.getY() + 40 + this.distanzaLivelli;
+		int ydx = (int) coordPadre.getY() + this.dimNodo + this.distanzaLivelli;
 		Point coordNodoDx = new Point(xdx, ydx);
 		//disegno gli archi di collegamento al figlio sinistro e destro
-		g.drawLine((int) coordPadre.getX() + 10, (int) coordPadre.getY() + 40, (int) coordNodoSx.getX() + 20, (int) coordNodoSx.getY()); //arco col figlio sx
-		g.drawLine( (int) coordPadre.getX() + 30, (int) coordPadre.getY() + 40, (int) coordNodoDx.getX() + 20, (int) coordNodoDx.getY()); //arco col figlio dx
+		g.drawLine((int) coordPadre.getX() + 10, (int) coordPadre.getY() + this.dimNodo, (int) coordNodoSx.getX() + this.dimNodo / 2, (int) coordNodoSx.getY()); //arco col figlio sx
+		g.drawLine( (int) coordPadre.getX() + 30, (int) coordPadre.getY() + this.dimNodo, (int) coordNodoDx.getX() + this.dimNodo/2, (int) coordNodoDx.getY()); //arco col figlio dx
 		
 		//disegno i nodi figli
 		this.showSottoalbero(g, sottoalberodadisegnare.getLeft(), coordNodoSx, coordPadre);
@@ -102,7 +102,7 @@ public class Visualizzatore extends JPanel{
 		//aggiungo il value del nodo al centro del cerchio
 		g.setColor(Color.black);
 		if(node != null)
-			g.drawString(Integer.toString(node.getValue()), (int) coordWhereToDraw.getX()+13, (int) coordWhereToDraw.getY() + 23);
+			g.drawString(Integer.toString(node.getValue()), (int) coordWhereToDraw.getX()+this.dimNodo/4+3, (int) coordWhereToDraw.getY() + this.dimNodo/2+3);
 	}
 	
 }
