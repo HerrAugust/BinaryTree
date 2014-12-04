@@ -70,6 +70,8 @@ public class BinaryTree<E> {
         	for(int i = 0; i < h && !queue.isEmpty(); i++) {
         		@SuppressWarnings("unchecked")
 				BinaryNode<Integer> corrente = (BinaryNode<Integer>) queue.dequeue();
+        		if(corrente == null)
+        			continue;
         		corrente.setValue(rand.nextInt());
         		if(new Random().nextBoolean()) {
         			corrente.setLeft(new BinaryNode<Integer>(rand.nextInt()));
@@ -222,6 +224,24 @@ public class BinaryTree<E> {
 	}
 
 
+	public LinkedList<String> levelOrder() {
+		LinkedList<String> dataList = new LinkedList<String>();
+		
+		Queue <BinaryNode<E>> queue = new Queue<BinaryNode<E>>();
+		queue.enqueue(this.root);
+		while(queue.isEmpty() == false) {
+			BinaryNode<E> node = (BinaryNode<E>) queue.dequeue();
+			if(node == null) {
+				dataList.add("nil");
+				continue;
+			}
+			dataList.add(node.getValue().toString());
+			queue.enqueue(node.getLeft());
+			queue.enqueue(node.getRight());
+		}
+		
+		return dataList;
+	}
 
 	public void preorder(List<E> dataList) {
 		if (isEmpty()) return;
@@ -258,7 +278,9 @@ public class BinaryTree<E> {
 		String r = root.toString() + "\n";
 		
 		if(root.hasLeft()) r += getLeft().toString();
+		else r+= "nil";
 		if(root.hasRight()) r += getRight().toString();
+		else r+= "nil";
 		return r;
 	}
 

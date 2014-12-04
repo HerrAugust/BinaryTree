@@ -12,9 +12,8 @@ public class Main {
 	public static void run() {
 		BinaryTree<Integer> bt;
 		bt = BinaryTree.generaCasuale(2);
-		List<Integer> preorder = new LinkedList<Integer>();
-		bt.preorder(preorder);
-		System.out.println(preorder.toString());
+		LinkedList<String> lvorder = bt.levelOrder();
+		System.out.println(lvorder.toString());
 		
 		new Visualizzatore("prova", new java.awt.Dimension(400,400), bt);
 	}

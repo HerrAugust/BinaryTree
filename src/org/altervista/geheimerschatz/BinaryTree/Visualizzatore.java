@@ -9,6 +9,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Visualizzatore extends JPanel{
 	private BinaryTree<Integer> bt;
 	private final int dimNodo = 40;
@@ -41,7 +42,7 @@ public class Visualizzatore extends JPanel{
 	}
 	
 	private void showAlbero(Graphics g, BinaryTree<Integer> albero) {
-		this.showSottoalbero(g, albero, null, false);
+		this.showSottoalbero(g, albero, null, null);
 	}
 	
 	/**
@@ -50,31 +51,35 @@ public class Visualizzatore extends JPanel{
 	 * @param bt
 	 * @param altezza
 	 */
-	private void showSottoalbero(Graphics g, BinaryTree<Integer> sottoalberodadisegnare, Point coordPadre, boolean isleftnode) {
+	private void showSottoalbero(Graphics g, BinaryTree<Integer> sottoalberodadisegnare, Point coordPadre, Point coordNonno) {
 		if(sottoalberodadisegnare.getRoot() == null) {
 			//disegno il nodo (nero)
 			drawNodo(g, sottoalberodadisegnare.getRoot(), coordPadre);
 			return;
 		}
 		
-		if(sottoalberodadisegnare.getRoot().isRoot())
+		if(sottoalberodadisegnare.getRoot().isRoot()) {
 			coordPadre = new Point(this.getWidth()/2, 0);
+			coordNonno = new Point(0,0);
+		}
 		
 		//disegno il nodo
 		drawNodo(g, sottoalberodadisegnare.getRoot(), coordPadre);
 		
 		
-		Point coordNodoSx = new Point( (int) coordPadre.getX() / 2, (int) coordPadre.getY() + 40 + this.distanzaLivelli);
-		Point coordNodoDx = new Point( (int) (coordPadre.getX() + coordNodoSx.getX()), (int) coordPadre.getY() + 40 + this.distanzaLivelli );
-		/*
-		 * //disegno gli archi di collegamento al figlio sinistro e destro
-		 * g.drawLine(coordPadre.x, coordPadre.y + 40, (int) coordNodoSx.getX(), (int) coordNodoSx.getX()); //figlio sx
-		 * g.drawLine(coordPadre.x + this.dimNodo, coordPadre.y + 40, (int) coordNodoDx.getX(), (int) coordNodoSx.getY()); //figlio dx
-		*/
+		int xsx = (int) (coordPadre.getX() - Math.abs((coordNonno.getX() - coordPadre.getX()) / 2));
+		int ysx = (int) coordPadre.getY() + 40 + this.distanzaLivelli;
+		Point coordNodoSx = new Point(xsx, ysx);
+		int xdx = (int) ((coordPadre.getX() - coordNodoSx.getX()) + coordPadre.getX());
+		int ydx = (int) coordPadre.getY() + 40 + this.distanzaLivelli;
+		Point coordNodoDx = new Point(xdx, ydx);
+		//disegno gli archi di collegamento al figlio sinistro e destro
+		g.drawLine((int) coordPadre.getX() + 10, (int) coordPadre.getY() + 40, (int) coordNodoSx.getX() + 20, (int) coordNodoSx.getY()); //arco col figlio sx
+		g.drawLine( (int) coordPadre.getX() + 30, (int) coordPadre.getY() + 40, (int) coordNodoDx.getX() + 20, (int) coordNodoDx.getY()); //arco col figlio dx
 		
 		//disegno i nodi figli
-		this.showSottoalbero(g, sottoalberodadisegnare.getLeft(), coordNodoSx, true);
-		this.showSottoalbero(g, sottoalberodadisegnare.getRight(), coordNodoDx, false);
+		this.showSottoalbero(g, sottoalberodadisegnare.getLeft(), coordNodoSx, coordPadre);
+		this.showSottoalbero(g, sottoalberodadisegnare.getRight(), coordNodoDx, coordPadre);
 	}
 	
 	/**
