@@ -4,19 +4,19 @@ package org.altervista.geheimerschatz.BinaryTree;
 *
 ******************PUBLIC OPERATIONS*********************
 *
-*  BinaryNode(E data)              --> Costruisce un nodo foglia/radice
-*  BinaryNode(E data, BinaryNode<E> left, BinaryNode<E> right) --> Costruisce un nodo interno
-*  public E getValue()             --> restituisce il valore contenuto nel nodo 
-*  public BinaryNode<E> getLeft()  -->  restituisce il figlio sinistro
-*  public BinaryNode<E> getRight() -->  restituisce il figlio destro
-*  public void setValue(E newValue)-->  assegna un valore al nodo
-*  public void setLeft(BinaryNode<E> newLeft)   --> assegna il figlio sinistro
-*  public void setRight(BinaryNode<E> newRight) --> assegna il figlio destro
-*  public boolean hasLeft()  --> verifica se il nodo ha il figlio sinistro
-*  public boolean hasRight() --> verifica se il nodo ha il figlio destro
-*  public boolean isInner()  --> verifica se il nodo e' interno
-*  public boolean isLeaf()   --> verifica se il nodo e' una foglia
-*  public boolean equals(Object other)   --> verifica se due nodi sono uguali
+*  BinaryNode(E data)              --> Build a root/leaf node
+*  BinaryNode(E data, BinaryNode<E> left, BinaryNode<E> right) --> Build an internal node
+*  public E getValue()             --> returns the number in the node
+*  public BinaryNode<E> getLeft()  -->  returns left child
+*  public BinaryNode<E> getRight() -->  return right child
+*  public void setValue(E newValue)-->  assign a value to the node
+*  public void setLeft(BinaryNode<E> newLeft)   --> assign left child
+*  public void setRight(BinaryNode<E> newRight) --> assign right child
+*  public boolean hasLeft()  --> verify if node has a left child
+*  public boolean hasRight() --> >verify if node has a right child
+*  public boolean isInner()  --> verify if node is internal
+*  public boolean isLeaf()   --> verify if node is a leaf
+*  public boolean equals(Object other)   --> verify if two nodes are equal
 */
 
 

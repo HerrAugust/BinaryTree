@@ -5,31 +5,31 @@ import java.util.*;
 import org.altervista.geheimerschatz.Queue_Stack.Queue;
 
 /**
- * Generico albero binario che alloca in ogni nodo un tipo parametrico
+ * Generic BinaryTree built on BinaryNode instances
  */
 
 /* BinaryTree<E> class
 *
 ******************PUBLIC OPERATIONS*********************
 *
-*  BinaryTree()		--> Costruisce un albero binario (vuoto).
-*  BinaryTree(E data)	--> Costruisce un albero binario di un solo nodo radice contenente il valore dato.
+*  BinaryTree()		--> Build an empty binary tree
+*  BinaryTree(E data)	--> build a binary tree that contains the only root with data
 *  BinaryTree(E data, BinaryTree<E> ltree, BinaryTree<E> rtree)
-*   --> Costruisce un albero binario la cui radice contiene il valore dato ed avete ltree e rtree come sottoalberi sinistro e destro.  
-*  boolean isEmpty( )	--> Verifica se l'albero binario è vuoto.
-*  clear( )		--> Svuota l'albero binario.
-*  E getValue()		--> restituisce il valore contenuto in radice
-*  BinaryTree<E> getLeft( )  --> Restituisce il sottoalbero sinistro.
-*  BinaryTree<E> getRight( ) --> Restituisce il sottoalbero destro.
-*  BinaryNode<E> getRoot( )  --> Restituisce la radice dell'albero binario.
-*  int size()    --> Restituisce il numero dei nodi (interni e foglie) dell'albero binario.
-*  int height()  --> Restituisce l'altezza dell'albero binario.
-*  boolean equals(Object other)  --> verifica se gli alberi binari hanno la stessa struttura e gli stessi valori
-*  ArrayList<E> fringe()  --> restituisce il contenuto delle foglie, in ordine da sinistra verso destra
-*  preorder(List<E> dataList)  --> crea una lista contenente i valori in ordine di visita anticipato dell'albero 
-*  inorder(List<E> dataList)   --> crea una lista contenente i valori in ordine di visita simmetrico dell'albero 
-*  postorder(List<E> dataList) --> crea una lista contenente i valori in ordine di visita posticipato dell'albero 
-*  String toString() --> restituisce la stringa che descrive l'albero binario
+*   --> build a binary tree whose root contains data. A left and a right trees are assigned to the root
+*  boolean isEmpty( )	--> Verify if tree is empty
+*  clear( )		--> Get the tree empty
+*  E getValue()		--> return the value in the root
+*  BinaryTree<E> getLeft( )  --> return left subtree
+*  BinaryTree<E> getRight( ) --> return right subtree
+*  BinaryNode<E> getRoot( )  --> return root of this binary tree
+*  int size()    --> return the number of nodes (internal or leaf) of the binary tree
+*  int height()  --> return the height of the binary tree
+*  boolean equals(Object other)  --> verify if the two trees have both the same structure and values
+*  ArrayList<E> fringe()  --> return the value of leaf, from left to right
+*  preorder(List<E> dataList)  --> create a lista that contains the values of the tree in pre-order
+*  inorder(List<E> dataList)   --> create a lista that contains the values of the tree in symmetric-order
+*  postorder(List<E> dataList) --> create a lista that contains the values of the tree in post-order
+*  String toString() --> return a string that describes the binary tree
 */
 
 
