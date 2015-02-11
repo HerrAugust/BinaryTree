@@ -23,8 +23,17 @@ package org.altervista.geheimerschatz.BinaryTree;
 public class BinaryNode<E> {
 	protected BinaryNode<E> left, right;	// children; can be null
 	protected E data;
-	protected boolean isRoot = false; //necessaria a Visualizzatore
+	protected boolean isRoot = false; //necessaria a class Visualizzatore
 
+	public BinaryNode<E> mirror() {
+		BinaryNode<E> speculare = new BinaryNode<E>(this.getValue());
+		if(this.left != null) //se ho un sottoalbero sinistro faccio lo speculare di quello e lo restituisco con padre me
+			speculare.setRight(this.left.mirror());
+		if(this.right != null)
+			speculare.setLeft(this.right.mirror());
+		return speculare;
+	}
+	
 	/** Constructs a node where left and right are null **/
 	public BinaryNode(E data) {
 		this.data = data;
@@ -139,6 +148,14 @@ public class BinaryNode<E> {
 		if (hasLeft() && !left.equals(t2.left)) return false;
 		if (hasRight() && !right.equals(t2.right)) return false;
 		return true;
+	}
+	
+	/**
+	 * Necessario a class Visualizzatore: dice che la root del presente albero è una root
+	 * di un albero.
+	 */
+	public void setIsRoot(boolean isroot) {
+		this.isRoot = isroot;
 	}
 		
 }

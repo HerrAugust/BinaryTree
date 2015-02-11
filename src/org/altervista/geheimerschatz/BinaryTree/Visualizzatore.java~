@@ -15,7 +15,7 @@ public class Visualizzatore extends JPanel{
 	private final int dimNodo = 40;
 	private final int distanzaLivelli = 25; //distanza tra un livello e un altro
 	
-	public Visualizzatore(String nome, Dimension dim, Point pos, BinaryTree<Integer> alberobinario) 
+	public Visualizzatore(String n, Dimension dim, BinaryTree<Integer> alberobinario) 
 	{
 		bt = alberobinario;
 		if(bt.isEmpty()) {
@@ -23,10 +23,9 @@ public class Visualizzatore extends JPanel{
 			bt = new BinaryTree<Integer>(1);
 		}
 		
-		JFrame frame = new JFrame(nome);
+		JFrame frame = new JFrame(n);
 		frame.setSize((int) dim.getWidth(), (int) dim.getHeight());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocation(pos.x, pos.y);
 		
 		this.setBackground(Color.LIGHT_GRAY);
 		Container pane = frame.getContentPane();
@@ -59,7 +58,7 @@ public class Visualizzatore extends JPanel{
 			return;
 		}
 		
-		if(sottoalberodadisegnare.getRoot().isRoot()) { //coordNonno == null && coordPadre == null
+		if(sottoalberodadisegnare.getRoot().isRoot()) {
 			coordPadre = new Point(this.getWidth()/2, 0);
 			coordNonno = new Point(0,0);
 		}
@@ -103,7 +102,7 @@ public class Visualizzatore extends JPanel{
 		//aggiungo il value del nodo al centro del cerchio
 		g.setColor(Color.black);
 		if(node != null)
-			g.drawString(Integer.toString(node.getValue()), (int) coordWhereToDraw.getX()+this.dimNodo/4+3, (int) coordWhereToDraw.getY() + this.dimNodo/2+3);
+			g.drawString(Integer.toString(node.getValue()), (int) coordWhereToDraw.getX()+13, (int) coordWhereToDraw.getY() + 23);
 	}
 	
 }

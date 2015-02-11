@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,12 +12,17 @@ public class Main {
 	}
 	
 	public static void run() {
-		BinaryTree<Integer> bt;
-		bt = BinaryTree.generaCasuale(2);
-		LinkedList<String> lvorder = bt.levelOrder();
-		System.out.println(lvorder.toString());
+		BinaryTree<Integer> bt = new BinaryTree<Integer>(19);
+		bt.getRoot().setIsRoot(true);
+		bt.getRoot().setLeft(new BinaryNode<Integer>(10));
+		BinaryNode<Integer> sottoalberodx = new BinaryNode<Integer>(1);
+		sottoalberodx.setLeft(new BinaryNode<Integer>(5));
+		bt.getRoot().setRight(sottoalberodx);
+		new Visualizzatore("Normale", new Dimension(400,400), new Point(0,0), bt);
 		
-		new Visualizzatore("prova", new java.awt.Dimension(400,400), bt);
+		BinaryTree<Integer> speculare;
+		speculare = bt.mirror();
+		new Visualizzatore("Mirror", new Dimension(400,400), new Point(410,0), speculare);
 	}
 	
 }

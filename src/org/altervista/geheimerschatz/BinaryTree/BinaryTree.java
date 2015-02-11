@@ -37,7 +37,16 @@ public class BinaryTree<E> {
 	private BinaryNode<E> root;
 	// aggiunta di altri eventuali campi...
 
-
+	public BinaryTree<E> mirror() {
+		BinaryTree<E> speculare = new BinaryTree<E>(this.root.getValue());
+		speculare.getRoot().setIsRoot(true);
+		if(this.root.hasRight())
+			speculare.root.setLeft(this.root.getRight().mirror());
+		if(this.root.hasLeft())
+			speculare.root.setRight(this.root.getLeft().mirror());
+		return speculare;
+	}
+	
         /**
          * @return un albero binario (vuoto) 
          */
@@ -61,7 +70,7 @@ public class BinaryTree<E> {
         	final int maxvalue = 20;
         	
         	BinaryTree<Integer> casuale = new BinaryTree<Integer>(new Integer(0));
-        	casuale.getRoot().isRoot = true; //necessario a Visualizzatore
+        	casuale.getRoot().setIsRoot(true); //necessario a Visualizzatore
         	
         	MyRandom rand = new MyRandom(maxvalue);
         	Queue<BinaryNode<Integer>> queue = new Queue<BinaryNode<Integer>>();
@@ -278,9 +287,9 @@ public class BinaryTree<E> {
 		String r = root.toString() + "\n";
 		
 		if(root.hasLeft()) r += getLeft().toString();
-		else r+= "nil";
+		else r+= " nil ";
 		if(root.hasRight()) r += getRight().toString();
-		else r+= "nil";
+		else r+= " nil ";
 		return r;
 	}
 
