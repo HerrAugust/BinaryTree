@@ -23,6 +23,10 @@ public class Main {
 		BinaryTree<Integer> speculare;
 		speculare = bt.mirror();
 		new Visualizzatore("Mirror", new Dimension(400,400), new Point(410,0), speculare);
+		
+		//random binary tree:
+		BinaryTree<Integer> randbt = BinaryTree.generaCasuale(3);
+		new Visualizzatore("Random Binary Tree", new Dimension(400,400), new Point(0,410), randbt);
 	}
 	
 }
