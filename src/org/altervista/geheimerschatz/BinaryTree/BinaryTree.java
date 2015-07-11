@@ -1,3 +1,8 @@
+/**
+ * Please note this material comes from me and from the one provided by the book I used.
+ * You can use it as you prefer but please state where it comes from!
+ * @author Agostino https://github.com/HerrAugust
+ **/
 package org.altervista.geheimerschatz.BinaryTree;
 
 import java.util.*;
@@ -37,17 +42,7 @@ public class BinaryTree<E> {
 	private BinaryNode<E> root;
 	// aggiunta di altri eventuali campi...
 
-	public BinaryTree<E> mirror() {
-		BinaryTree<E> speculare = new BinaryTree<E>(this.root.getValue());
-		speculare.getRoot().setIsRoot(true);
-		if(this.root.hasRight())
-			speculare.root.setLeft(this.root.getRight().mirror());
-		if(this.root.hasLeft())
-			speculare.root.setRight(this.root.getLeft().mirror());
-		return speculare;
-	}
-	
-        /**
+	/**
          * @return un albero binario (vuoto) 
          */
         public BinaryTree( )
@@ -64,36 +59,6 @@ public class BinaryTree<E> {
         public BinaryTree(E data, BinaryTree<E> ltree, BinaryTree<E> rtree)
         {
             root =  new BinaryNode<E>(data, ltree.root, rtree.root);
-        }
-
-        public static BinaryTree<Integer> generaCasuale(int h) {
-        	final int maxvalue = 20;
-        	
-        	BinaryTree<Integer> casuale = new BinaryTree<Integer>(new Integer(0));
-        	casuale.getRoot().setIsRoot(true); //necessario a Visualizzatore
-        	
-        	MyRandom rand = new MyRandom(maxvalue);
-        	Queue<BinaryNode<Integer>> queue = new Queue<BinaryNode<Integer>>();
-        	queue.enqueue(casuale.getRoot());
-        	
-        	for(int i = 0; i < h && !queue.isEmpty(); i++) {
-        		@SuppressWarnings("unchecked")
-				BinaryNode<Integer> corrente = (BinaryNode<Integer>) queue.dequeue();
-        		if(corrente == null)
-        			continue;
-        		corrente.setValue(rand.nextInt());
-        		if(new Random().nextBoolean()) {
-        			corrente.setLeft(new BinaryNode<Integer>(rand.nextInt()));
-        			queue.enqueue(corrente.getLeft());
-        		}
-        		if(new Random().nextBoolean()) {
-        			corrente.setRight(new BinaryNode<Integer>(rand.nextInt()));
-        			queue.enqueue(corrente.getLeft());
-        		}
-        		
-        	}
-        	
-        	return casuale;
         }
 
         /**
@@ -292,6 +257,58 @@ public class BinaryTree<E> {
 		else r+= " nil ";
 		return r;
 	}
+
+//--------------------------------------------------------------------------------------------------------
+//Exam exercise
+//--------------------------------------------------------------------------------------------------------
+	public BinaryTree<E> mirror() {
+		BinaryTree<E> speculare = new BinaryTree<E>(this.root.getValue());
+		speculare.getRoot().setIsRoot(true);
+		if(this.root.hasRight())
+			speculare.root.setLeft(this.root.getRight().mirror());
+		if(this.root.hasLeft())
+			speculare.root.setRight(this.root.getLeft().mirror());
+		return speculare;
+	}
+
+//---------------------------------------------------------------------------------------------------------
+//Methods by Agostino
+//---------------------------------------------------------------------------------------------------------
+	/**
+ 	* Generates a binary tree with height h. See main() below for an example.
+ 	* @param h height of the binary tree that you want to generate.
+ 	* @return a random-generated instance of BinaryTree<Integer>
+ 	* @author Agostino
+ 	**/ 
+	public static BinaryTree<Integer> generaCasuale(int h) {
+        	final int maxvalue = 20; //max value you can expect in nodes of the random-generated binary tree. Change as you want
+        	
+        	BinaryTree<Integer> casuale = new BinaryTree<Integer>(new Integer(0));
+        	casuale.getRoot().setIsRoot(true); //necessario a Visualizzatore
+        	
+        	MyRandom rand = new MyRandom(maxvalue);
+        	Queue<BinaryNode<Integer>> queue = new Queue<BinaryNode<Integer>>();
+        	queue.enqueue(casuale.getRoot());
+        	
+        	for(int i = 0; i < h && !queue.isEmpty(); i++) {
+        		@SuppressWarnings("unchecked")
+				BinaryNode<Integer> corrente = (BinaryNode<Integer>) queue.dequeue();
+        		if(corrente == null)
+        			continue;
+        		corrente.setValue(rand.nextInt());
+        		if(new Random().nextBoolean()) {
+        			corrente.setLeft(new BinaryNode<Integer>(rand.nextInt()));
+        			queue.enqueue(corrente.getLeft());
+        		}
+        		if(new Random().nextBoolean()) {
+        			corrente.setRight(new BinaryNode<Integer>(rand.nextInt()));
+        			queue.enqueue(corrente.getLeft());
+        		}
+        		
+        	}
+        	
+        	return casuale;
+        }
 
 
 //	/**	
